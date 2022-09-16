@@ -14,9 +14,9 @@ export const Main = () => {
 
   useEffect(() => {
     if (username) {
-      getGistlistOfUser();
+      getGistlistOfUser(); // eslint-disable-line
     }
-  }, [username]);
+  }, [username]); // eslint-disable-line
 
   useEffect(() => {
     if (username === null) {
@@ -47,7 +47,7 @@ export const Main = () => {
         setDataIsNotFound(true);
         setIsLoading(false);
       });
-  }, [octokit.rest.gists, username]);
+  }, [username]);
 
   const getContent = () => {
     if (!gists?.length && !isLoading && username === null) {
