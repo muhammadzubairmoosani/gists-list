@@ -1,7 +1,7 @@
 {
   "name": "gist",
   "version": "0.1.0",
-  "homepage": "https://muhammadzubairmoosani.github.io/github-gists",
+  "homepage": "https://muhammadzubairmoosani.github.io/gists-list",
   "private": true,
   "dependencies": {
     "@octokit/rest": "^19.0.4",
