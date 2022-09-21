@@ -13,12 +13,6 @@ export const Main = () => {
   const [dataIsNotFound, setDataIsNotFound] = useState(false);
 
   useEffect(() => {
-    if (username) {
-      getGistlistOfUser(); // eslint-disable-line
-    }
-  }, [username]); // eslint-disable-line
-
-  useEffect(() => {
     if (username === null) {
       setGists([]);
     }
@@ -30,7 +24,6 @@ export const Main = () => {
     octokit.rest.gists
       .listForUser({ username })
       .then(({ data }) => {
-        console.log(!data.length);
         if (!data.length && username) {
           setGists([]);
           setIsLoading(false);
@@ -48,6 +41,12 @@ export const Main = () => {
         setIsLoading(false);
       });
   }, [username]);
+
+  useEffect(() => {
+    if (username) {
+      getGistlistOfUser();
+    }
+  }, [username, getGistlistOfUser]);
 
   const getContent = () => {
     if (!gists?.length && !isLoading && username === null) {

@@ -29,6 +29,14 @@ export const getForksList = (gist_id, loadingCallBack, dataCallBack) => {
     });
 };
 
+const getGistsCount = (tagNames) => (
+  <Popover content={tagNames.slice(3)} trigger="click">
+    <Tag color="gold" className="cursorPointer">
+      {`+${tagNames.length - 3}`}
+    </Tag>
+  </Popover>
+);
+
 export const getTags = (files) => {
   const tagNames = Object.values(files).map((i) => (
     <Tag
@@ -43,13 +51,7 @@ export const getTags = (files) => {
 
   return [
     ...tagNames.slice(0, 3),
-    tagNames.length > 3 && (
-      <Popover content={tagNames.slice(3)} trigger="click">
-        <Tag color="gold" className="cursorPointer">
-          {`+${tagNames.length - 3}`}
-        </Tag>
-      </Popover>
-    ),
+    tagNames.length > 3 && getGistsCount(tagNames),
   ];
 };
 
@@ -62,7 +64,7 @@ export const getForks = (forks, forkApiIsLoading) => {
         "No forks found!"
       ) : (
         forks.map((fork) => (
-          <Tooltip title={fork.owner.login}>
+          <Tooltip key={fork.id} title={fork.owner.login}>
             <Avatar
               src={fork.owner.avatar_url}
               onClick={() => openInNewTab(fork.html_url)}

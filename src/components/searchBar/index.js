@@ -7,6 +7,7 @@ export const SearchBar = ({ callback }) => {
   const [key, setKey] = useState(null);
 
   const _onChangeKey = ({ key }) => {
+    key = key.replace(/\s/g, "");
     typingTimeout && clearTimeout(typingTimeout);
     setKey(key || null);
   };

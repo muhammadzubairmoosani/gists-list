@@ -12,6 +12,7 @@ export const GistList = ({ data }) => {
       dataSource={data}
       renderItem={(gist) => (
         <List.Item
+          key={gist.id}
           actions={[
             getTags(gist.files),
             <Popover
